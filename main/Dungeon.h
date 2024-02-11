@@ -9,12 +9,12 @@ using namespace std;
 class Dungeon
 {
 
-private:
+public:
     string a;
     int health = 100;
     int life = 3;
+    const string weapons[3] = {"Twin Shadow Blades", "Valiant Defender", "Staff of Arcane"};
 
-public:
     void displayName(void)
     {
         cout << "Please Wait.";
@@ -24,8 +24,6 @@ public:
         cout << "." << endl;
         Sleep(2000);
         system("cls");
-        cout << "Welcome to the " << endl
-             << endl;
         std::cout << " ___ \n";
         std::cout << "| . \\ _ _ ._ _  ___  ___  ___ ._ _ \n";
         std::cout << "| | || | || ' |/ . |/ ._>/ . \\| ' |\n";
@@ -37,12 +35,8 @@ public:
     }
     void selectCharacter(void)
     {
-        // system("cls");
-
-        // system("cls");
-
-        // displayName();
         int choice;
+        string weaponAlloted;
         cout << "::::::::::::::::::::::::::::::" << endl
              << endl;
 
@@ -58,40 +52,70 @@ public:
         Sleep(2000);
         cout << "Select from the above 3: ";
         cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            weaponAlloted = weapons[0];
+            break;
+
+        case 2:
+            weaponAlloted = weapons[1];
+            break;
+        case 3:
+            weaponAlloted = weapons[2];
+            break;
+        default:
+            cout << "Unknown Error Occured!" << endl
+                 << "Please Reastart";
+            exit(1);
+            break;
+        }
+
         switch (choice)
         {
         case 1:
             a = "Adlein";
-            cout << "::: \tYou have selected " << a << " as your character.";
+            cout << "::: You have selected " << a << " as your character.";
             Sleep(2000);
-            cout << "\n::: \tKeep an eye on your character's health bar which is " << health << "\% for now.";
+            cout << "\n:: Keep an eye on your character's health bar which is " << health << "\% .";
             Sleep(2000);
-            cout << "\n::: \tAlso Use your " << life << " lifes Carefully.";
-
+            cout << "\n:: Also Use your " << life << " lifes Carefully.";
+            Sleep(2000);
+            cout << "\n:: Your Weapon is **" << weaponAlloted << "**.\n";
             break;
 
         case 2:
             a = "Brian";
-            cout << "\n::: \tYou have selected " << a << " as your character.";
+            cout << "\n:: You have selected " << a << " as your character.";
             Sleep(2000);
-            cout << "\n::: \tKeep an eye on your character's health bar which is " << health << "\% for now.";
+            cout << "\n:: Keep an eye on your character's health bar which is " << health << "\% .";
             Sleep(2000);
-            cout << "\n::: \tAlso Use your " << life << " lifes Carefully.";
+            cout << "\n:: Also Use your " << life << " lifes Carefully.";
+            cout << "\n:: Your Weapon is **" << weaponAlloted << "**.\n";
             break;
 
         case 3:
             a = "Cheoron";
-            cout << "\n::: \tYou have selected " << a << " as your character.";
+            cout << "\n::: You have selected " << a << " as your character.";
             Sleep(2000);
-            cout << "\n::: \tKeep an eye on your character's health bar which is " << health << "\% for now.";
+            cout << "\n::: Keep an eye on your character's health bar which is " << health << "\% .";
             Sleep(2000);
-            cout << "\n::: \tAlso Use your " << life << " lifes Carefully.";
+            cout << "\n::: Also Use your " << life << " lifes Carefully.";
+            Sleep(2000);
+            cout << "\n:: Your Weapon is **" << weaponAlloted << "**.\n";
             break;
         default:
             cout << "Invalid Choice!";
             break;
         }
     }
+};
+
+class GameMechanics
+{
+public:
+
 };
 
 #endif
