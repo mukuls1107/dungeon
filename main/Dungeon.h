@@ -18,6 +18,18 @@ public:
 
     const string weapons[3] = {"Twin Shadow Blades", "Valiant Defender", "Staff of Arcane"};
     string characterSelected, weaponGiven;
+
+    void drawArt()
+    {
+        std::cout << " ___ \n";
+        std::cout << "| . \\ _ _ ._ _  ___  ___  ___ ._ _ \n";
+        std::cout << "| | || | || ' |/ . |/ ._>/ . \\| ' |\n";
+        std::cout << "|___/`___||_|_|\\_. |\\___.\\___/|_|_|\n";
+        std::cout << "               <___'\n"
+                  << endl
+                  << endl;
+    }
+
     void displayName(void)
     {
         cout << "Please Wait.";
@@ -27,13 +39,9 @@ public:
         cout << "." << endl;
         Sleep(2000);
         system("cls");
-        std::cout << " ___ \n";
-        std::cout << "| . \\ _ _ ._ _  ___  ___  ___ ._ _ \n";
-        std::cout << "| | || | || ' |/ . |/ ._>/ . \\| ' |\n";
-        std::cout << "|___/`___||_|_|\\_. |\\___.\\___/|_|_|\n";
-        std::cout << "               <___'\n"
-                  << endl
-                  << endl;
+
+        drawArt();
+
         Sleep(2000);
     }
     void selectCharacter(void)
@@ -73,7 +81,7 @@ public:
             break;
         default:
             cout << "Unknown Error Occured!" << endl
-                 << "Please Reastart";
+                 << "Please Restart";
             exit(1);
             break;
         }
@@ -123,6 +131,9 @@ class Attackers
 public:
     void Attack(Dungeon &character)
     {
+        system("cls");
+        character.drawArt();
+
         string super[3] = {"Adlein", "Brian", "Cheoron"};
         int damage[3] = {30, 20, 10};
         int damageToPerform;
@@ -176,27 +187,27 @@ public:
 
         Player1.displayName();
         Player1.selectCharacter();
-        // while (Player1.health > 0)
-        // {
-        //     Attackers attacker;
-        //     attacker.Attack(Player1);
+        while (Player1.health > 0)
+        {
+            Attackers attacker;
+            attacker.Attack(Player1);
 
-        //     // Check if player's health is 0 or less
-        //     if (Player1.health <= 0)
-        //     {
-        //         cout << "Game Over! Your character has been defeated." << endl;
-        //         break;
-        //     }
+            // Check if player's health is 0 or less
+            if (Player1.health <= 0)
+            {
+                cout << "Game Over! " << Player1.characterSelected <<" has been defeated." << endl;
+                break;
+            }
 
-        //     char choice;
-        //     cout << "Do you want to continue attacking? (y/n): ";
-        //     cin >> choice;
-        //     if (choice != 'y' && choice != 'Y')
-        //     {
-        //         cout << "You chose to stop attacking." << endl;
-        //         break;
-        //     }
-        // }
+            char choice;
+            cout << "Do you want to continue attacking? (y/n): ";
+            cin >> choice;
+            if (choice != 'y' && choice != 'Y')
+            {
+                cout << "You chose to stop attacking." << endl;
+                break;
+            }
+        }
     }
 };
 #endif
