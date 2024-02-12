@@ -8,6 +8,19 @@ using namespace std;
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
+void txtRed()
+{
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+}
+void txtGreen()
+{
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+}
+void txtWhite()
+{
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+}
+
 class Dungeon
 {
 
@@ -15,12 +28,16 @@ public:
     // string a;
     int health = 100;
     int life = 3;
+    int demonHealth = 100;
+    string demonWeapon = "Shin Sword";
+    int demonDamage = 20;
 
     const string weapons[3] = {"Twin Shadow Blades", "Valiant Defender", "Staff of Arcane"};
     string characterSelected, weaponGiven;
 
     void drawArt()
     {
+        txtGreen();
         std::cout << " ___ \n";
         std::cout << "| . \\ _ _ ._ _  ___  ___  ___ ._ _ \n";
         std::cout << "| | || | || ' |/ . |/ ._>/ . \\| ' |\n";
@@ -28,6 +45,7 @@ public:
         std::cout << "               <___'\n"
                   << endl
                   << endl;
+        txtWhite();
     }
 
     void displayName(void)
@@ -129,6 +147,19 @@ public:
 class Attackers
 {
 public:
+    void demonAttack(Dungeon &character)
+    {
+        system("cls");
+        character.drawArt();
+        txtGreen();
+        cout << "::]> A Demon has just appeared!";
+        cout << "\n::]> Be Carefull about Demon's Weapon which is " << character.demonWeapon << ".\n";
+        cout << "::]> Demon's Health is " << character.demonHealth << "%." << endl;
+
+        txtWhite();
+    }
+
+
     void Attack(Dungeon &character)
     {
         system("cls");
@@ -156,13 +187,12 @@ public:
             exit(1);
         }
 
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-
+        txtRed();
         cout << character.characterSelected << " is performing an " << character.weaponGiven << "  Attack!" << endl;
         Sleep(2000);
         character.health -= damageToPerform;
 
-        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+        txtWhite();
         if (character.health < 0)
         {
             cout << "Remaining Health ::> 0" << endl;
@@ -191,11 +221,11 @@ public:
         {
             Attackers attacker;
             attacker.Attack(Player1);
-
+            attacker.demonAttack(Player1);
             // Check if player's health is 0 or less
             if (Player1.health <= 0)
             {
-                cout << "Game Over! " << Player1.characterSelected <<" has been defeated." << endl;
+                cout << "Game Over! " << Player1.characterSelected << " has been defeated." << endl;
                 break;
             }
 
