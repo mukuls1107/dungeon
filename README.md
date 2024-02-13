@@ -16,7 +16,7 @@ We aspire to elevate the Shin Rage experience with the following features:
 - [ ] **Turn-Based Combat:** Implement an engaging combat system where players engage in strategic battles with formidable foes.
 - [ ] **Dungeon Exploration:** Expand the game world with intricate dungeons, secret passages, and challenging puzzles to test players' skills.
 - [ ] **Character Development:** Allow players to level up their characters, unlock new abilities, and customize their strengths and weaknesses.
-- [ ] **Storyline and Quests:** Introduce a gripping storyline filled with quests, plot twists, and memorable characters to immerse players in the game world.
+
 
 ### Running Environment
 
@@ -27,6 +27,6 @@ Shin Rage is optimized for Windows operating systems.
 Stay updated on the latest developments of Shin Rage and connect with us on social media:
 
 - [Twitter](https://twitter.com/mukulownsyou)
-- [Facebook](https://facebook.com/mukulownsyou)
+- [Instagram](https://instagram.com/mukulownsyou)
 
 Thank you for embarking on the journey of Shin Rage!
