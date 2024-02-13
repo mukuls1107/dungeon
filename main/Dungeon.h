@@ -29,8 +29,10 @@ public:
     int health = 100;
     int life = 3;
     int demonHealth = 100;
+    string demonName = "Kirmada";
     string demonWeapon = "Shin Sword";
     int demonDamage = 20;
+    int damageToPerform;
 
     const string weapons[3] = {"Twin Shadow Blades", "Valiant Defender", "Staff of Arcane"};
     string characterSelected, weaponGiven;
@@ -152,34 +154,37 @@ public:
         system("cls");
         character.drawArt();
         txtGreen();
-        cout << "::]> A Demon has just appeared!";
-        cout << "\n::]> Be Carefull about Demon's Weapon which is " << character.demonWeapon << ".\n";
-        cout << "::]> Demon's Health is " << character.demonHealth << "%." << endl;
+        cout << "::]> A Demon named " << character.demonName << " has just appeared!";
+        cout << "\n::]> Be Carefull about " << character.demonName << "'s Weapon which is " << character.demonWeapon << ".\n";
+        cout << "::]>" << character.demonName << "'s Health is " << character.demonHealth << "%." << endl;
 
+        txtRed();
+        cout << "::]> The Demon is Attacking on " << character.characterSelected << endl;
+        txtGreen();
+
+        cout << "::]> BE PREPARED!!! ";
         txtWhite();
     }
-
 
     void Attack(Dungeon &character)
     {
         system("cls");
         character.drawArt();
 
-        string super[3] = {"Adlein", "Brian", "Cheoron"};
         int damage[3] = {30, 20, 10};
-        int damageToPerform;
+        // int damageToPerform;
         string power[3] = {"Twin Shadow Blades", "Valiant Defender", "Staff of Arcane"};
         if (character.characterSelected == "Adlein")
         {
-            damageToPerform = damage[0];
+            character.damageToPerform = damage[0];
         }
         else if (character.characterSelected == "Brian")
         {
-            damageToPerform = damage[1];
+            character.damageToPerform = damage[1];
         }
         else if (character.characterSelected == "Cheoron")
         {
-            damageToPerform = damage[2];
+            character.damageToPerform = damage[2];
         }
         else
         {
@@ -190,16 +195,18 @@ public:
         txtRed();
         cout << character.characterSelected << " is performing an " << character.weaponGiven << "  Attack!" << endl;
         Sleep(2000);
-        character.health -= damageToPerform;
+        // character.demonHealth -= damageToPerform;
 
         txtWhite();
-        if (character.health < 0)
+        if (character.demonHealth < 0)
         {
-            cout << "Remaining Health ::> 0" << endl;
+            cout << character.demonName << "'s Remaining Health ::> " << character.demonHealth << endl;
+            txtGreen();
+            cout << character.demonName << " Has been Defeated." << endl;
         }
         else
         {
-            cout << "Remaining Health ::> " << character.health << endl;
+            cout << character.demonName << "'s Remaining Health ::> " << character.demonHealth << endl;
         }
     }
 };
@@ -217,25 +224,46 @@ public:
 
         Player1.displayName();
         Player1.selectCharacter();
-        while (Player1.health > 0)
+        while (Player1.demonHealth > 0)
         {
             Attackers attacker;
             attacker.Attack(Player1);
             attacker.demonAttack(Player1);
+            Player1.demonHealth -= Player1.damageToPerform;
+
             // Check if player's health is 0 or less
-            if (Player1.health <= 0)
+            if (Player1.demonHealth <= 0)
             {
-                cout << "Game Over! " << Player1.characterSelected << " has been defeated." << endl;
+                txtGreen();
+                cout << "Game Over! " << Player1.demonName << " has been defeated." << endl;
+                txtWhite();
                 break;
             }
 
             char choice;
             cout << "Do you want to continue attacking? (y/n): ";
             cin >> choice;
+            txtRed();
+            cout << "::]> " << Player1.demonName << " is Attacking!!" << endl;
+            Player1.health -= 10;
+            txtWhite();
+            cout << Player1.characterSelected << "'s Health is now :> " << Player1.health << "%." << endl;
+            Sleep(3000);
             if (choice != 'y' && choice != 'Y')
             {
-                cout << "You chose to stop attacking." << endl;
-                break;
+                if (Player1.health < 0)
+                {
+                    txtRed();
+                    cout << "You Have been Defeated." << endl;
+                    break;
+                    txtWhite();
+                }
+                else
+                {
+
+                    cout << "You chose to Quit." << endl;
+                    break;
+                }
             }
         }
     }
