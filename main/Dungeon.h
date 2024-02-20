@@ -29,7 +29,7 @@ public:
     int health = 100;
     int life = 3;
     int demonHealth = 100;
-    string demonName = "Kirmada";
+    string demonName = "Dev";
     string demonWeapon = "Shin Sword";
     int demonDamage = 20;
     int damageToPerform;
